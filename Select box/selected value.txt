@@ -1,0 +1,7 @@
+<select value="{{$nationality2}}" id="nationalitylist2" name="nationality2" class="form-control" style="border: 1px solid grey; padding: 6px 8px; font-weight: 500;  height:39px !important;">
+    @if($nationality2 != "" || $nationality2 != "none")
+        <option value="{{ $nationality2 }}" selected>{{ $nationality2 }}</option>
+    @else
+        <option value="none">Choose Nationality</option>
+    @endif
+</select>
