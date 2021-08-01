@@ -1,3 +1,29 @@
+
+<?php
+
+$std = DB::table('students')->where('form_id',$formid)->get();
+
+$fname = sizeof($std)!=0 ? $std[0]->fname : '';
+$nationality1 = sizeof($std)!=0 ? $std[0]->nationality1 : '';
+$nationality2 = sizeof($std)!=0 ? $std[0]->nationality2 : '';
+
+if(sizeof($std)==0){
+    $std = DB::table('students')->where('st_id',$st_id)->get();
+
+    if($std->count() > 0){
+        $dob = sizeof($std)!=0 ? $std[0]->dob : '';
+        $gender = sizeof($std)!=0 ? $std[0]->gender : '';
+        $nationality1 = sizeof($std)!=0 ? $std[0]->nationality1 : '';
+        $nationality2 = sizeof($std)!=0 ? $std[0]->nationality2 : '';
+        $who_guardian = sizeof($std)!=0 ? $std[0]->who_guardian : '';
+    }
+}
+
+?>
+
+
+
+
 <select value="{{$nationality2}}" id="nationalitylist2" name="nationality2" class="form-control" style="border: 1px solid grey; padding: 6px 8px; font-weight: 500;  height:39px !important;">
     @if($nationality2 != "" || $nationality2 != "none")
         <option value="{{ $nationality2 }}" selected>{{ $nationality2 }}</option>
