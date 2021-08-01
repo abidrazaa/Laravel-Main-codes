@@ -1,4 +1,4 @@
-<input type="file" name="evaluation_file" id="evaluation_file" onchange="loadFile(event)"
+<input type="file" name="evaluation_file" id="evaluation_file" onchange="loadFileEvaluation(event)"
 accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf">
 
 
