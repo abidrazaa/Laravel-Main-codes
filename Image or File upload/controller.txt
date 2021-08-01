@@ -1,0 +1,34 @@
+public function upload_pdf_evaluation(Request $request){
+        
+        $form_id = $request->input('form_id');
+        $st_id = Auth::user()->id;
+        
+ 
+        if($request->hasfile('pdf_evaluation'))
+        {
+            
+            $pdf = $request->file('pdf_evaluation');
+            $new_name = time().'.'.$pdf->getClientOriginalExtension();
+            $pdf->move(public_path('evaluation_pdfs'), $new_name); 
+            // return response()->json(array("msg" => $new_name), 200);
+        }
+        
+        $keys = array('form_id','st_id','choice','file');
+
+        $values = array($form_id,$st_id,"pdf",$new_name);
+
+        $data = array_combine($keys, $values);
+        
+        
+        $st = DB::select('select * from evaluation where form_id='.$form_id);
+
+        if(empty($st)){
+            DB::table("evaluation")->insert($data);
+        }
+        else{
+            DB::table("evaluation")->where('form_id',$form_id)->update($data);
+        }
+        
+        return response()->json(array("msg" => $new_name), 200);
+
+    }

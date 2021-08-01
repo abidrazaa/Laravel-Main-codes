@@ -1,0 +1,32 @@
+<input type="file" name="evaluation_file" id="evaluation_file" onchange="loadFile(event)"
+accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf">
+
+
+<input type="hidden" name="pdf_evaluation_name" id="pdf_evaluation_name" value="">
+
+
+
+function loadFileEvaluation(event) {
+
+    var formData = new FormData();
+    formData.append('pdf_evaluation', document.getElementById("evaluation_file").files[0]);
+    formData.append('form_id', document.getElementById("form_id").value);
+    
+    
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } })
+    $.ajax({
+        type:'POST',
+        url: '/upload_pdf_evaluation',
+        data:formData,
+        dataType:'JSON',
+        cache:false,
+        contentType: false,
+        processData: false,
+        success:function(data){
+            document.getElementById('pdf_evaluation_name').value = data.msg ;
+        },
+        error: function(data){
+            console.log("error");
+        }
+    });
+};
