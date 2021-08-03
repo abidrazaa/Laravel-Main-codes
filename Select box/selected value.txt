@@ -1,3 +1,4 @@
+
 <?php
 
 $std = DB::table('students')->where('form_id',$formid)->get();
