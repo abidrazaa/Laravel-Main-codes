@@ -1,0 +1,7 @@
+*) from whole database:
+
+	select column_name from information_schema.columns where table_schema = 'consdigi_tis' 
+
+*) from a specific table:
+
+	select column_name from information_schema.columns where table_schema = 'consdigi_tis' and table_name = 'files'
