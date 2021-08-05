@@ -4,4 +4,4 @@
 
 *) from a specific table:
 
-	select column_name from information_schema.columns where table_schema = 'consdigi_tis' and table_name = 'files'
+	select column_name from information_schema.columns where table_schema = 'db_name' and table_name = 'files'
