@@ -13,7 +13,7 @@ public function add_committee(Request $request){
         DB::table("committee")->insert($data);
         
         return view('redirect')
-            ->with("page","/admin/committee");
+        ->with("page","/admin/committee");
 }
     
 public function del_committee(Request $request){
