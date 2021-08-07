@@ -34,7 +34,7 @@ public function edit_committee(Request $request){
                             "members"=>implode(",",$request->input('members'))]);
       
         return view('redirect')
-            ->with("page","/admin/committee");
+        ->with("page","/admin/committee");
 }
     
     
