@@ -23,7 +23,7 @@ public function del_committee(Request $request){
 
         // return view('admin.rightDistribution');
         return view('redirect')
-            ->with("page","/admin/committee");
+        ->with("page","/admin/committee");
 }
     
 public function edit_committee(Request $request){
