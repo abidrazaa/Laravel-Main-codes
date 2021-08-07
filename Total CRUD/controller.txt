@@ -1,4 +1,4 @@
-    public function add_committee(Request $request){
+public function add_committee(Request $request){
         
         $name = $request->input('name');
         $members = implode(",",$request->input('members'));
@@ -14,9 +14,9 @@
         
         return view('redirect')
             ->with("page","/admin/committee");
-    }
+}
     
-    public function del_committee(Request $request){
+public function del_committee(Request $request){
         $id = $request->input('formid');
         DB::delete('delete from committee where id = '.$id);
         // DB::delete('update jobapplicants set status = "accepted" where id='.$id);
@@ -24,9 +24,9 @@
         // return view('admin.rightDistribution');
         return view('redirect')
             ->with("page","/admin/committee");
-    }
+}
     
-    public function edit_committee(Request $request){
+public function edit_committee(Request $request){
         $id = $request->input('id');
         DB::table('committee')
                 ->where('id', $id)
@@ -35,6 +35,6 @@
       
         return view('redirect')
             ->with("page","/admin/committee");
-    }
+}
     
     
