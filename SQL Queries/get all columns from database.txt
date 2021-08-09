@@ -1,5 +1,4 @@
 *) from whole database:
-
 	select column_name from information_schema.columns where table_schema = 'db_name' 
 
 *) from a specific table:
