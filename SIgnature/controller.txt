@@ -1,0 +1,28 @@
+public function addSignature(Request $request){
+        
+        if(isset($_POST['img'])){
+            $new_name = time().'.'.'txt';
+            
+            $base64 = $_POST['img'];
+            $data = explode(',', $base64);
+            $file = base64_decode($data[1]);
+           
+            $output_file = public_path().'/sign/'.$new_name;
+           
+            if (!file_exists(public_path().'/sign/'.$new_name)) {
+                touch(public_path().'/sign/'.$new_name, strtotime('-1 days'));
+                $output_file = public_path().'/sign/'.$new_name;
+            }
+
+            $file = fopen($output_file, "wb");
+            fwrite($file, $base64);
+            fclose($file);
+            $st_id = Auth::user()->id;
+            $keys = array('sign');
+            $values = array($new_name);
+            $data = array_combine($keys, $values);
+
+            DB::table("students")->where('st_id',$st_id)->update($data);
+
+        }
+}
