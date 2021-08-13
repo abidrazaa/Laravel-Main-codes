@@ -1,3 +1,37 @@
 <div class="col-sm-3">
      <button onclick="search()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Searching" id="load1" class="btn btn-dark" style="width: 100%; border-radius: 6px; padding: 5px 10px; font-size: 16px; font-family: sans-serif; font-weight: 400; "> Search </button>
 </div>
+
+
+
+
+$('#load1').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+        var field = $('#filter-field').val();
+        var value = $('#filter-value').val();
+        var selected_option = $('#select-to-show-table').val();
+        console.log("field==>",field)
+        console.log("value==>",value)
+        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}})
+        $.ajax({
+                type: 'GET',
+                url: '/admin/students',
+                data: {"field":field , "value":value , "option":selected_option},
+                success: function(data){
+                    
+                    
+                    // $('#approved').css('display','none');
+                    // $('#rejected').css('display','none');
+                    // $('#pending').css('display','none');
+                    
+                    
+                    
+                    $("#container").html(data);
+                    $this.button('reset');
+        
+                },
+                error: function(data){}
+        });
+    
+    });
