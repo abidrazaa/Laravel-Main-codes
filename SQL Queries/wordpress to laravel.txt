@@ -1,0 +1,90 @@
+SELECT 
+  p.ID,
+  p.post_title,
+  `post_content`,
+  `post_excerpt`,
+  t.name AS product_category,
+  t.term_id AS product_id,
+  t.slug AS product_slug,
+  tt.term_taxonomy_id AS tt_term_taxonomia,
+  tr.term_taxonomy_id AS tr_term_taxonomia,
+  MAX(CASE WHEN pm1.meta_key = '_price' then pm1.meta_value ELSE NULL END) as price,
+  MAX(CASE WHEN pm1.meta_key = '_regular_price' then pm1.meta_value ELSE NULL END) as regular_price,
+  MAX(CASE WHEN pm1.meta_key = '_sale_price' then pm1.meta_value ELSE NULL END) as sale_price,
+  MAX(CASE WHEN pm1.meta_key = '_sku' then pm1.meta_value ELSE NULL END) as sku 
+FROM 0nrgnpq_posts p
+LEFT JOIN 0nrgnpq_postmeta pm1 ON pm1.post_id = p.ID
+LEFT JOIN 0nrgnpq_term_relationships AS tr ON tr.object_id = p.ID
+JOIN 0nrgnpq_term_taxonomy AS tt ON tt.taxonomy = 'product_cat' AND tt.term_taxonomy_id = tr.term_taxonomy_id 
+JOIN 0nrgnpq_terms AS t ON t.term_id = tt.term_id
+WHERE p.post_type in('product', 'product_variation') AND p.post_status = 'publish'
+GROUP BY p.ID,p.post_title
+	
+
+
+
+
+
+
+
+SELECT p.*, pm2.meta_value as image_file FROM (
+  SELECT 
+    p.ID,
+    p.post_title,
+    `post_content`,
+    `post_excerpt`,
+    t.name AS product_category,
+    t.term_id AS product_id,
+    t.slug AS product_slug,
+    tt.term_taxonomy_id AS tt_term_taxonomia,
+    tr.term_taxonomy_id AS tr_term_taxonomia,
+    MAX(CASE WHEN pm1.meta_key = '_price' then pm1.meta_value ELSE NULL END) as price,
+    MAX(CASE WHEN pm1.meta_key = '_sku' then pm1.meta_value ELSE NULL END) as sku,
+    MAX(CASE WHEN pm1.meta_key = '_thumbnail_id' then pm1.meta_value ELSE NULL END) as thumbnail_id
+  FROM 0nrgnpq_posts p 
+  LEFT JOIN 0nrgnpq_postmeta pm1 ON pm1.post_id = p.ID
+  LEFT JOIN 0nrgnpq_term_relationships AS tr ON tr.object_id = p.ID
+  JOIN 0nrgnpq_term_taxonomy AS tt ON tt.taxonomy = 'product_cat' AND tt.term_taxonomy_id = 
+  tr.term_taxonomy_id 
+  JOIN 0nrgnpq_terms AS t ON t.term_id = tt.term_id
+  WHERE p.post_type in('product', 'product_variation') AND p.post_status = 'publish'
+  GROUP BY p.ID,p.post_title
+) as p
+JOIN 0nrgnpq_postmeta pm2 ON pm2.post_id = p.thumbnail_id
+WHERE pm2.meta_key = '_wp_attached_file'
+
+
+
+https://youniform.co/wp-content/uploads/2021/01/tie.jpg
+
+
+
+
+
+
+INSERT INTO custom_orders (ID, post_title, post_content, post_excerpt, product_category, product_id, product_slug, price, sku, thumbnail_id, image_file)
+SELECT p.*, pm2.meta_value as image_file FROM (
+  SELECT 
+    p.ID,
+    p.post_title,
+    `post_content`,
+    `post_excerpt`,
+    t.name AS product_category,
+    t.term_id AS product_id,
+    t.slug AS product_slug,
+    tt.term_taxonomy_id AS tt_term_taxonomia,
+    tr.term_taxonomy_id AS tr_term_taxonomia,
+    MAX(CASE WHEN pm1.meta_key = '_price' then pm1.meta_value ELSE NULL END) as price,
+    MAX(CASE WHEN pm1.meta_key = '_sku' then pm1.meta_value ELSE NULL END) as sku,
+    MAX(CASE WHEN pm1.meta_key = '_thumbnail_id' then pm1.meta_value ELSE NULL END) as thumbnail_id
+  FROM 0nrgnpq_posts p 
+  LEFT JOIN 0nrgnpq_postmeta pm1 ON pm1.post_id = p.ID
+  LEFT JOIN 0nrgnpq_term_relationships AS tr ON tr.object_id = p.ID
+  JOIN 0nrgnpq_term_taxonomy AS tt ON tt.taxonomy = 'product_cat' AND tt.term_taxonomy_id = 
+  tr.term_taxonomy_id 
+  JOIN 0nrgnpq_terms AS t ON t.term_id = tt.term_id
+  WHERE p.post_type in('product', 'product_variation') AND p.post_status = 'publish'
+  GROUP BY p.ID,p.post_title
+) as p
+JOIN 0nrgnpq_postmeta pm2 ON pm2.post_id = p.thumbnail_id
+WHERE pm2.meta_key = '_wp_attached_file'
