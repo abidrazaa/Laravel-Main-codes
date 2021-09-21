@@ -19,10 +19,6 @@ JOIN 0nrgnpq_term_taxonomy AS tt ON tt.taxonomy = 'product_cat' AND tt.term_taxo
 JOIN 0nrgnpq_terms AS t ON t.term_id = tt.term_id
 WHERE p.post_type in('product', 'product_variation') AND p.post_status = 'publish'
 GROUP BY p.ID,p.post_title
-	
-
-
-
 
 
 
