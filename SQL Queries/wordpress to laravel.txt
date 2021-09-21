@@ -22,7 +22,6 @@ GROUP BY p.ID,p.post_title
 
 
 
-
 SELECT p.*, pm2.meta_value as image_file FROM (
   SELECT 
     p.ID,
