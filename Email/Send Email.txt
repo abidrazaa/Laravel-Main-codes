@@ -1,0 +1,11 @@
+Route::get('/custom/admin/send_mail', function () {
+  
+        $to_name = "Abid Raza";
+        $to_email= "abidrazanaqvi711@gmail.com";
+        $data = array("name"=>"Abid","company"=>"Digital Consultants");
+        Mail::send('admin/email/mail', $data, function ($message) use ($to_name,$to_email){
+            $message->to($to_email)
+            ->subject("This is the Subject!!");
+        });
+        echo "Email sent successfully!!";
+}); 
