@@ -1,0 +1,14 @@
+if($request->input('designation') != null){
+            $count_experience = 0;
+
+            foreach($request->input('designation') as $designation){
+                $count_experience++;
+            }
+
+            for($i=0; $i<$count_experience; $i++){
+                $designation1 .= ",".$request->input('designation')[$i];
+                $company .= ",".$request->input('company')[$i];
+                $years .= ",".$request->input('years')[$i];
+                // $applicants->save();
+            }
+        }
