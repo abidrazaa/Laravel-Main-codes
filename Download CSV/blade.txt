@@ -1,0 +1,3 @@
+<div style="float:right;" class="mb-2">
+    <a class="btn btn-primary" href="/download/csv/applicants?job_id={{$_GET['id']}}"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Download Csv </a>
+</div>
