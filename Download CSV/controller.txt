@@ -1,0 +1,68 @@
+public function DownloadCSV(Request $request){
+        
+        $job_id = $request->input("job_id");
+        
+        $job = DB::table("jobs")->where("id", $job_id)->get();
+        $applicants = DB::table("applicants")->where('job_id',$job_id)->get();
+        
+        
+        $filename = "Applications for ".$job[0]->job_title." ".date("YmdHis").".csv";
+    	$handle   = fopen($filename, 'w+');
+
+    	fputcsv($handle, array('Name', 'Email', 'Phone', "Years Of Experience", "Highest Education", "Experience", "Education", "Resume Link"));
+    	
+    	foreach($applicants as $applicant){
+    	    
+    	    $applicant_name = $applicant->applicant_name;
+    	    $applicant_email = $applicant->applicant_email;
+    	    $applicant_phone = $applicant->applicant_phone;
+    	    $y_o_e = $applicant->y_o_e;
+    	    $max_edu = $applicant->max_edu;
+    	    
+    	   // Experience
+    	    $designation = $applicant->designation;
+    	    $designation = explode(",", $designation);
+    	    
+    	    $years = $applicant->years;
+    	    $years = explode(",", $years);
+    	    
+    	    $company = $applicant->company;
+    	    $company = explode(",", $company);
+    	    
+    	    $experience = "";
+    	    
+    	    for($i=1; $i < count($designation); $i++){
+    	        $experience .= "I have worked in ".$company[$i]. " as ".$designation[$i]." for ".$years[$i]." years, ";
+    	    }
+    	    
+    	   // Education
+    	    $qualification = $applicant->qualification;
+    	    $qualification = explode(",", $qualification);
+    	    
+    	    $subject = $applicant->subject;
+    	    $subject = explode(",", $subject);
+    	    
+    	    $institute = $applicant->institute;
+    	    $institute = explode(",", $institute);
+    	    $education = "";
+    	    
+    	    for($i=1; $i < count($qualification); $i++){
+    	        $education .= "I have done ".$qualification[$i]. " in ".$subject[$i]." from ".$institute[$i] . ", ";
+    	    }
+    	    
+    	    
+    	    fputcsv($handle, array($applicant_name, $applicant_email, $applicant_phone, $y_o_e, $max_edu, $experience, $education, "https://hrs-int.com/public/resumes/".$applicant->resume));
+    
+    	}
+    	
+    	
+    
+        fclose($handle);
+    
+    	$headers = array(
+    		'Content-Type' => 'text/csv',
+    	);
+
+		return Response::download($filename, $filename, $headers);
+        
+    }
