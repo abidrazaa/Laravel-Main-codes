@@ -1,0 +1,27 @@
+<li class="nav-item menu-is-completeding">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-search"></i>
+              <p>
+                Admissions
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/orders/open?status=Open" class="nav-link ">
+                  <i class="fa fa fa-search nav-icon"></i>
+                  <p>Admit Cards</p>
+                </a>
+              </li>
+            </ul>           
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/orders/return_n_exchange?status=Exchange" class="nav-link ">
+                  <i class="fa fa-search nav-icon"></i>
+                  <p>Exchange</p>
+                </a>
+              </li>
+            </ul>
+          </li>
