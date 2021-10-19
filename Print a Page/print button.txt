@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.2/jQuery.print.min.js"></script>
+</head>
+
+
+  <button id="print"> Print </button>
+
+<script>
+    $('#print').on('click', function() {
+        console.log("wahhhh")
+
+    let CSRF_TOKEN = $('meta[name="csrf-token"').attr('content');
+
+    $.ajaxSetup({
+    url: '/print',
+    type: 'POST',
+    data: {
+        _token: CSRF_TOKEN,
+    },
+    beforeSend: function() {
+        console.log('printing ...');
+    },
+    complete: function() {
+        console.log('printed!');
+    }
+    });
+
+    $.ajax({
+    success: function(viewContent) {
+        $.print(viewContent); // This is where the script calls the printer to print the viwe's content.
+    }
+    });
+    });
+</script>
+
+</html>
+
+

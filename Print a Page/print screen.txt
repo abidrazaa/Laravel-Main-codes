@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<style>
+  @page { size: auto;  margin: 0mm; }
+
+  td,th{
+    padding: 10px;
+    text-align: center;
+    vertical-align: center;
+  }
+</style>
+
+<body>
+  <center>
+    <h1>The Learning Center</h1>
+    <h3>Admit Card</h3>
+    <br>
+    <br>
+    
+    <table border="1px solid black">
+      <tr>
+        <th>Timings</th>
+        <th>Subjects</th>
+        <th>Invigilator Signature</th>
+        <th>Marks</th>
+        <th>Remarks</th>
+      </tr>
+
+      <tr>
+        <td>4:00 pm - 5:00 pm</td>
+        <td>Maths</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>4:00 pm - 5:00 pm</td>
+        <td>Maths</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>4:00 pm - 5:00 pm</td>
+        <td>Maths</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>4:00 pm - 5:00 pm</td>
+        <td>Maths</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>4:00 pm - 5:00 pm</td>
+        <td>Maths</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </center>
+
+
+</body>
+
+<script>
+
+</script>
+
+
+
+</html>
