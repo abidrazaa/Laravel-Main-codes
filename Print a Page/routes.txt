@@ -1,5 +1,6 @@
 Route::post('/print', function() { return view('admin.admissions.admit_card'); });
 
+
 Route::get('/dashboard/admit_card', function () {
     return view('admin.admissions.print_admit_card');
 })->name('print_admit_card');
