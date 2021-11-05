@@ -1,0 +1,23 @@
+CREATE TABLE travel_clients (
+    id int NOT NULL AUTO_INCREMENT,
+    fname varchar(255),
+    lname varchar(255),
+    cnic varchar(255),
+    cnic_issue varchar(255),
+    dob varchar(255),
+    phone varchar(255),
+    purpose varchar(255),
+    email varchar(255),
+    passport_no varchar(255),
+    address varchar(255),
+    city_of_residence varchar(255),
+    b_fname varchar(255),
+    b_lname varchar(255),
+    b_details varchar(255),
+    b_cnic varchar(255),
+    b_phone varchar(255),
+    b_address varchar(255),
+    pay_via varchar(255),
+    transaction_id varchar(255),
+    PRIMARY KEY (id)
+);
