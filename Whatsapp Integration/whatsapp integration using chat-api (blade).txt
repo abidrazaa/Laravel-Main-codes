@@ -1,0 +1,7 @@
+<form action="/send_whatsapp_message" method="GET">
+
+        {{ csrf_field() }}
+        <input type="number" name="phone" id= "phone" placeholder="Send whatsapp message to ... "></input>        
+        <button type="submit">Send</button>
+
+</form>
